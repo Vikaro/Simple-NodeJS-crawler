@@ -1,0 +1,18 @@
+head
+  <script src="//unpkg.com/3d-force-graph"></script>
+  style.
+     body {
+      margin: 0;
+    }
+body
+  #3d-graph
+  input(id="site",value=site, type="hidden")
+footer
+  script.
+    const site = document.querySelector("#site").value
+    const Graph = ForceGraph3D()
+            (document.getElementById('3d-graph'))
+            .jsonUrl(`http://localhost:3000/api/links?site=${site}`)
+            .nodeLabel('id')
+    
+  

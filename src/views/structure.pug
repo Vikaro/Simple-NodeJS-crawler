@@ -1,0 +1,37 @@
+head
+  <script src="//unpkg.com/d3-dsv"></script>
+  <script src="//unpkg.com/dat.gui"></script>
+  <script src="//unpkg.com/d3-octree"></script>
+  <script src="//unpkg.com/d3-force-3d"></script>
+  <script src="//unpkg.com/3d-force-graph"></script>
+  style.
+     body {
+      margin: 0;
+    }
+body
+  #3d-graph
+  input(id="site",value=site, type="hidden")
+footer
+  script.
+    const site = document.querySelector("#site").value
+    const Graph = ForceGraph3D()
+            (document.getElementById('3d-graph'))
+            .dagMode('radialout')
+      .dagLevelDistance(200)
+      .backgroundColor('#101020')
+      .linkColor(() => 'rgba(255,255,255,0.2)')
+      .nodeRelSize(1)
+      .nodeId('id')
+      .nodeVal('size')
+      .nodeLabel('id')
+      .nodeAutoColorBy('module')
+      .nodeOpacity(0.9)
+      .linkDirectionalParticles(2)
+      .linkDirectionalParticleWidth(0.8)
+      .linkDirectionalParticleSpeed(0.006)
+      .d3Force('collision', d3.forceCollide(node => Math.cbrt(node.size) * 1))
+      .d3VelocityDecay(0.3)
+      
+            .jsonUrl(`http://localhost:3000/api/structure?site=${site}`);
+
+  
